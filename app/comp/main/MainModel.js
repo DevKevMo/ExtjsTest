@@ -1,4 +1,4 @@
-Ext.define("test.components.main.MainModel", {
+Ext.define("test.comp.main.MainModel", {
   extend: "Ext.app.ViewModel",
   alias: "viewmodel.main",
   stores: {
@@ -35,7 +35,7 @@ Ext.define("test.components.main.MainModel", {
           mapping: "TEST",
         },
       ],
-      autoLoad: true,
+      autoLoad: false, //change later
       id: "user", //delete later
       proxy: {
         type: "ajax",

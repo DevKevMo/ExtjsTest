@@ -7,12 +7,7 @@ Ext.application({
 
   name: "test",
 
-  requires: [
-    // This will automatically load all classes in the test namespace
-    // so that application classes do not need to require each other.
-    "test.*",
-  ],
+  requires: ["test.*"],
 
-  // The name of the initial view to create.
-  /*   mainView: "test.app.view.Main", */
+  mainView: "test.comp.main.Main",
 });

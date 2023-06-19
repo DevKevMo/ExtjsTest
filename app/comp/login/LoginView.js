@@ -1,16 +1,15 @@
-Ext.define("Games.view.login.loginView", {
+Ext.define("test.comp.login.loginView", {
   extend: "Ext.window.Window",
   xtype: "login",
 
-  requires: ["Games.view.login.LoginController", "Ext.form.Panel"],
+  requires: ["test.comp.login.LoginController", "Ext.form.Panel"],
 
   controller: "login",
   bodyPadding: 10,
   title: "Login",
-  resizable: false,
   closable: false,
   autoShow: true,
-  height: 522,
+  modal: true,
 
   items: {
     xtype: "form",
@@ -33,6 +32,7 @@ Ext.define("Games.view.login.loginView", {
     buttons: [
       {
         text: "Login",
+        flex: 1,
         formBind: true,
         listeners: {
           click: "onLoginClick",
