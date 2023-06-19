@@ -3,16 +3,16 @@
  * and launch() the Application class.
  */
 Ext.application({
-    extend: 'test.Application',
+  extend: "test.Application",
 
-    name: 'test',
+  name: "test",
 
-    requires: [
-        // This will automatically load all classes in the test namespace
-        // so that application classes do not need to require each other.
-        'test.*'
-    ],
+  requires: [
+    // This will automatically load all classes in the test namespace
+    // so that application classes do not need to require each other.
+    "test.*",
+  ],
 
-    // The name of the initial view to create.
-    mainView: 'test.view.main.Main'
+  // The name of the initial view to create.
+  /*   mainView: "test.app.view.Main", */
 });
