@@ -10,6 +10,7 @@ Ext.define("test.comp.login.loginView", {
   closable: false,
   autoShow: true,
   modal: true,
+  resizable: false,
 
   items: {
     xtype: "form",

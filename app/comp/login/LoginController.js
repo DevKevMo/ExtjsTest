@@ -2,7 +2,7 @@ Ext.define("test.comp.login.LoginController", {
   extend: "Ext.app.ViewController",
   alias: "controller.login",
 
-  onLoginClick: function (btn, value) {
+  onLoginClick: function () {
     form = this.lookup("form"); // formfield with the login values (username and password)
     formValues = form.getValues();
     Ext.Ajax.request({
