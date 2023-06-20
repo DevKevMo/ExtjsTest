@@ -3,6 +3,8 @@ Ext.define("test.comp.chart.Chart", {
   xtype: "chartView",
 
   requires: [
+    "test.comp.chart.ChartController",
+
     "Ext.chart.series.Bar",
     "Ext.chart.series.Line",
     "Ext.chart.series.Pie",
@@ -12,11 +14,13 @@ Ext.define("test.comp.chart.Chart", {
     "Ext.chart.interactions.PanZoom",
   ],
 
+  controller: "chart",
+
   items: [
     {
       xtype: "chart",
       reference: "chart",
-      title: "test",
+      title: "Column",
       store: {
         type: "columnChart",
       },
