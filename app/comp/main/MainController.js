@@ -4,8 +4,7 @@ Ext.define("test.comp.main.MainController", {
   alias: "controller.main",
 
   init: function (test, value) {
-    var sessionSet;
-    sessionSet = localStorage.getItem("userSessionKm");
+    var sessionSet = localStorage.getItem("userSessionKm");
     if (!sessionSet) {
       Ext.create({
         xtype: "login",
