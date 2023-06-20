@@ -6,8 +6,10 @@ Ext.define("test.comp.main.MainController", {
   init: function (test, value) {
     var sessionSet;
     sessionSet = localStorage.getItem("userSessionKm");
-    Ext.create({
-      xtype: sessionSet ? "" : "login",
-    });
+    if (!sessionSet) {
+      Ext.create({
+        xtype: "login",
+      });
+    }
   },
 });

@@ -1,4 +1,4 @@
-Ext.define("test.comp.login.loginView", {
+Ext.define("test.comp.login.Login", {
   extend: "Ext.window.Window",
   xtype: "login",
 
