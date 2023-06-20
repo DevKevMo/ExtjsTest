@@ -4,3 +4,4 @@ bootstrap.*
 classic.json*
 classic.jsonp
 .sencha
+sencha-error*
