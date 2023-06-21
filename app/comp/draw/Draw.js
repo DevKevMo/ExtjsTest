@@ -16,13 +16,38 @@ Ext.define("test.comp.draw.Draw", {
           reference: "colorpicker",
           fieldLabel: "Color",
           listeners: {
-            select: function (picker, color) {
-              var drawController = picker.up("drawView").getController();
-              drawController.setColor(color);
-            },
+            select: "onColorSelect",
           },
         },
-        // Add more toolbar items if needed
+        {
+          xtype: "numberfield",
+          fieldLabel: "Line Width",
+          minValue: 1,
+          maxValue: 10,
+          value: 2,
+          listeners: {
+            change: "onWidthChange",
+          },
+        },
+        {
+          xtype: "segmentedbutton",
+          items: [
+            {
+              text: "Line",
+              pressed: true, // initally selected
+              handler: "onModeButtonClick",
+            },
+            {
+              text: "Circle",
+              handler: "onModeButtonClick",
+            },
+          ],
+        },
+        {
+          xtype: "button",
+          text: "Clear",
+          handler: "onClearClick",
+        },
       ],
     },
   ],
