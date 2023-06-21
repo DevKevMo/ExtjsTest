@@ -13,12 +13,12 @@ Ext.define("test.comp.draw.Draw", {
       items: [
         {
           xtype: "colorpicker",
+          reference: "colorpicker",
           fieldLabel: "Color",
           listeners: {
             select: function (picker, color) {
-              // Handle color selection
-              var selectedColor = color;
-              // Your logic here
+              var drawController = picker.up("drawView").getController();
+              drawController.setColor(color);
             },
           },
         },
