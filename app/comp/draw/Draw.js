@@ -2,7 +2,7 @@ Ext.define("test.comp.draw.Draw", {
   extend: "Ext.tab.Panel",
   xtype: "drawView",
 
-  requires: ["test.comp.draw.DrawController"],
+  requires: ["test.comp.draw.DrawController", "test.comp.draw.DrawWindow"],
 
   controller: "draw",
 
@@ -12,6 +12,10 @@ Ext.define("test.comp.draw.Draw", {
       dock: "top",
       items: [
         {
+          xtype: "tbtext",
+          text: "color Picker:",
+        },
+        {
           xtype: "colorpicker",
           reference: "colorpicker",
           fieldLabel: "Color",
@@ -19,9 +23,13 @@ Ext.define("test.comp.draw.Draw", {
             select: "onColorSelect",
           },
         },
+        "-",
+        {
+          xtype: "tbtext",
+          text: "Change width:",
+        },
         {
           xtype: "numberfield",
-          fieldLabel: "Line Width",
           minValue: 1,
           maxValue: 10,
           value: 2,
@@ -29,24 +37,40 @@ Ext.define("test.comp.draw.Draw", {
             change: "onWidthChange",
           },
         },
+        "-",
         {
           xtype: "segmentedbutton",
           items: [
             {
               text: "Line",
+              iconCls: "x-fa fa-pencil",
               pressed: true, // initally selected
               handler: "onModeButtonClick",
+              tooltip: "change mode to line",
             },
             {
               text: "Circle",
+              iconCls: "x-fa fa-circle",
               handler: "onModeButtonClick",
+              tooltip: "change mode to circle",
             },
           ],
         },
+        "->",
+        {
+          xtype: "button",
+          text: "Save",
+          handler: "onSaveClick",
+          tooltip: "Save Drawing",
+          iconCls: "x-fa fa-save",
+        },
+        "-",
         {
           xtype: "button",
           text: "Clear",
           handler: "onClearClick",
+          tooltip: "clear drawing",
+          iconCls: "x-fa fa-trash",
         },
       ],
     },

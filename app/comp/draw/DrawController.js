@@ -2,30 +2,7 @@ Ext.define("test.comp.draw.DrawController", {
   extend: "Ext.app.ViewController",
   alias: "controller.draw",
 
-  // Toolbar functions
-
-  onColorSelect: function (colorPicker, newColor) {
-    this.setColor(newColor);
-  },
-
-  onWidthChange: function (numberField, newWidth) {
-    this.setWidth(newWidth);
-  },
-
-  onModeButtonClick: function (button) {
-    var mode = button.getText();
-    this.setDrawingMode(mode);
-  },
-
-  onClearClick: function () {
-    var drawContainer = this.lookup("drawContainer");
-    var surface = drawContainer.getSurface("main");
-    surface.removeAll();
-    surface.renderFrame();
-  },
-
   // Mouse clicks for drawing
-
   onMouseDown: function (event) {
     this.drawing = true;
     var drawContainer = this.lookup("drawContainer");
@@ -88,6 +65,62 @@ Ext.define("test.comp.draw.DrawController", {
   onMouseUp: function (event) {
     this.line = null;
     this.drawing = false;
+  },
+
+  // Toolbar functions
+
+  onColorSelect: function (colorPicker, newColor) {
+    this.setColor(newColor);
+  },
+
+  onWidthChange: function (numberField, newWidth) {
+    this.setWidth(newWidth);
+  },
+
+  onModeButtonClick: function (button) {
+    var mode = button.getText();
+    this.setDrawingMode(mode);
+  },
+
+  onSaveClick: function () {
+    var drawContainer = this.lookup("drawContainer");
+    var surface = drawContainer.getSurface("main");
+    var sprites = surface.getItems();
+    var drawingData = [];
+    Ext.each(sprites, function (sprite) {
+      if (sprite.isSprite && sprite.type === "circle") {
+        drawingData.push({
+          type: "circle",
+          x: sprite.attr.cx,
+          y: sprite.attr.cy,
+          radius: sprite.attr.radius,
+          fillStyle: sprite.attr.fillStyle,
+        });
+      } else if (sprite.isSprite && sprite.type === "line") {
+        drawingData.push({
+          type: "line",
+          fromX: sprite.attr.fromX,
+          fromY: sprite.attr.fromY,
+          toX: sprite.attr.toX,
+          toY: sprite.attr.toY,
+          strokeStyle: sprite.attr.strokeStyle,
+          lineWidth: sprite.attr.lineWidth,
+        });
+      }
+    });
+
+    Ext.create("test.comp.draw.DrawWindow", {
+      drawImg: drawContainer.getImage(),
+      imgSize: drawContainer.size,
+      drawingData: drawingData,
+    });
+  },
+
+  onClearClick: function () {
+    var drawContainer = this.lookup("drawContainer");
+    var surface = drawContainer.getSurface("main");
+    surface.removeAll();
+    surface.renderFrame();
   },
 
   // Styling (setter and getter)
