@@ -1,9 +1,7 @@
 Ext.define("test.comp.draw.Draw", {
   extend: "Ext.tab.Panel",
   xtype: "drawView",
-
-  requires: ["test.comp.draw.DrawController", "test.comp.draw.DrawWindow"],
-
+  requires: ["test.comp.draw.DrawController", "test.comp.draw.DrawWindow", "test.comp.draw.DrawModel"],
   controller: "draw",
 
   dockedItems: [{
@@ -31,7 +29,7 @@ Ext.define("test.comp.draw.Draw", {
       {
         xtype: "numberfield",
         minValue: 1,
-        maxValue: 10,
+        maxValue: 100,
         value: 2,
         listeners: {
           change: "onWidthChange",
@@ -58,6 +56,14 @@ Ext.define("test.comp.draw.Draw", {
       "->",
       {
         xtype: "button",
+        text: "import",
+        handler: "onImportClick",
+        tooltip: "ImportDrawing",
+        iconCls: "x-fa fa-upload",
+      },
+      "-",
+      {
+        xtype: "button",
         text: "Save",
         handler: "onSaveClick",
         tooltip: "Save Drawing",
@@ -75,7 +81,7 @@ Ext.define("test.comp.draw.Draw", {
   }],
   items: [{
     xtype: "draw",
-    title: "Draw",
+    title: "Field:",
     flex: 1,
     reference: "drawContainer",
     sprites: [],

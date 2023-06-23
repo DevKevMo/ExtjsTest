@@ -26,8 +26,12 @@
         <cfreturn returnStr>
     </cffunction>
 
-    <cffunction name="deleteDrawing" access="remote" description="save draw reference" auth="Kevin Moritz">
+    <cffunction name="getDraw" access="remote" description="get a list of all drawings" auth="Kevin Moritz">
     </cffunction>
-    <cffunction name="updateDrawing" access="remote" description="save draw reference" auth="Kevin Moritz">
+
+
+    <cffunction name="deleteDraw" access="remote" description="save draw reference" auth="Kevin Moritz">
+    </cffunction>
+    <cffunction name="updateDraw" access="remote" description="save draw reference" auth="Kevin Moritz">
     </cffunction>
 </cfcomponent>

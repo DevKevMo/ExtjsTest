@@ -2,7 +2,8 @@ Ext.define("test.comp.draw.DrawController", {
   extend: "Ext.app.ViewController",
   alias: "controller.draw",
 
-  // Mouse clicks for drawing
+  // Mouse functions for drawing
+
   onMouseDown: function (event) {
     this.drawing = true;
     var drawContainer = this.lookup("drawContainer");
@@ -32,6 +33,7 @@ Ext.define("test.comp.draw.DrawController", {
     surface.renderFrame();
     this.drawing = true;
   },
+
   onMouseMove: function (event) {
     if (this.drawing) {
       var drawContainer = this.lookup("drawContainer");
@@ -135,12 +137,23 @@ Ext.define("test.comp.draw.DrawController", {
   },
 
   onWidthChange: function (numberField, newWidth) {
-    this.setWidth(newWidth);
+    if (newWidth <= 100) {
+      this.setWidth(newWidth);
+    } else {
+      Ext.toast("number cant be over 100");
+    }
   },
 
   onModeButtonClick: function (button) {
     var mode = button.getText();
     this.setDrawingMode(mode);
+  },
+
+  onImportClick: function () {
+    var drawContainer = this.lookup("drawContainer");
+    Ext.create("test.comp.draw.DrawImportWindow", {
+      drawContainer: drawContainer,
+    });
   },
 
   onSaveClick: function () {
