@@ -58,7 +58,7 @@ Ext.define("test.comp.draw.DrawWindow", {
       items: [{
         xtype: "image",
         reference: "drawingImage",
-        maxwidth: 300,
+        maxWidth: 300,
         maxHeight: 200,
         listeners: {
           afterrender: "LoadWindowDraw",
