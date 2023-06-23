@@ -5,3 +5,4 @@ classic.json*
 classic.jsonp
 .sencha
 sencha-error*
+app/user/*
