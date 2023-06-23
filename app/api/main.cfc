@@ -1,4 +1,4 @@
-<cfcomponent>
+<cfcomponent extends="base">
 
     <cffunction name="login" access="remote" httpmethod="GET" returnFormat="JSON" description="set Session Id"
         auth="Kevin Moritz">
@@ -8,7 +8,7 @@
         <cfset returnStr=structNew() />
         <cfset returnStr.error=true />
         <cfset returnStr.message="error: no user found" />
-        <cfset returnStr.Data="" />
+        <cfset returnStr.Data={} />
 
         <cfquery name="userExistQuery" datasource="ora8_azubi">
             SELECT ID
@@ -23,14 +23,12 @@
                 SET SESSIONID = '#SID#'
                 WHERE ID = #userExistQuery.ID#
             </cfquery>
-            <cfset returnStr.Data=SID />
+            <cfset createFolder("D:\\wwwroot\azubi_kmoritz\exttraining\test\app\user\" & userExistQuery.ID) />
+            <cfset returnStr.Data={"sId":SID,"uId": userExistQuery.ID} />
             <cfset returnStr.message="success: update SessionId" />
             <cfset returnStr.error=false />
         </cfif>
         <cfreturn returnStr>
-    </cffunction>
-
-    <cffunction name="auth" access="remote" httpmethod="GET" returnFormat="JSON">
     </cffunction>
 
 </cfcomponent>

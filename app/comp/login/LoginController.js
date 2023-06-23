@@ -14,8 +14,10 @@ Ext.define("test.comp.login.LoginController", {
       success: (response) => {
         var data = Ext.decode(response.responseText); // Get the values ERROR(true,false), DATA(returnValue), and MESSAGE
         Ext.toast(data.MESSAGE);
+        debugger;
         if (!data.ERROR) {
-          localStorage.setItem("userSessionKm", data.DATA);
+          localStorage.setItem("userSessionKm", data.DATA.sId);
+          localStorage.setItem("userIdKm", data.DATA.uId);
           this.getView().destroy();
         } else {
           form.reset();

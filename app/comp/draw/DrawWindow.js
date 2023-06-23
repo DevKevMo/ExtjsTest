@@ -17,12 +17,10 @@ Ext.define("test.comp.draw.DrawWindow", {
   imgSize: null,
   drawingData: null,
 
-  items: [
-    {
+  items: [{
       xtype: "toolbar",
       dock: "top",
-      items: [
-        {
+      items: [{
           xtype: "tbtext",
           text: "Title:",
         },
@@ -57,20 +55,18 @@ Ext.define("test.comp.draw.DrawWindow", {
         align: "center",
         pack: "center",
       },
-      items: [
-        {
-          xtype: "image",
-          reference: "drawingImage",
-          maxwidth: 300,
-          maxHeight: 200,
-          listeners: {
-            afterrender: "LoadWindowDraw",
-          },
-          style: {
-            border: "1px solid black",
-          },
+      items: [{
+        xtype: "image",
+        reference: "drawingImage",
+        maxwidth: 300,
+        maxHeight: 200,
+        listeners: {
+          afterrender: "LoadWindowDraw",
         },
-      ],
+        style: {
+          border: "1px solid black",
+        },
+      }, ],
     },
   ],
 });
