@@ -9,20 +9,22 @@
         <cfset returnStr.error=true />
         <cfset returnStr.message="" />
         <cfset returnStr.data=[] />
+        <cfset root="D:\\wwwroot\azubi_kmoritz\exttraining\test\app\user\" & userId & "\img\" />
+        <cfset createFolder(root) />
 
-        <cfset folderRoot="D:\\wwwroot\azubi_kmoritz\exttraining\test\app\user\" & userId & "\img\" />
-        <cfset fileRoot=folderRoot & title />
-        <cfset createFolder(folderRoot ) />
         <!--- return str with Message and and Error status --->
-        <cfset createFileStr=createFile(fileRoot, dataObj) />
+        <cfset createFileStr=createFile(root, dataObj, title) />
+
         <cfif !createFileStr.Error>
             <cfquery name="addDrawing" datasource="ora8_azubi">
                 INSERT INTO MORITZK_DRAW (TITLE, LINK, USERID)
-                VALUES ('#title#', '#fileRoot#', #userId#)
+                VALUES ('#title#', '#root##title#', #userId#)
             </cfquery>
         </cfif>
+
         <cfset returnStr.message=#createFileStr.Message# />
         <cfset returnStr.error=false />
+
         <cfreturn returnStr>
     </cffunction>
 

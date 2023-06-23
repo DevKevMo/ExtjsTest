@@ -1,4 +1,4 @@
-Ext.define("test.comp.draw.DrawWindow", {
+Ext.define("test.comp.draw.DrawImportWindow", {
     extend: "Ext.window.Window",
     xtype: "drawWindow",
 
@@ -15,33 +15,5 @@ Ext.define("test.comp.draw.DrawWindow", {
     //set over create function
     drawContainer: null,
 
-    items: [{
-        xtype: "toolbar",
-        dock: "top",
-        items: [{
-                xtype: "tbtext",
-                text: "Title:",
-            },
-            {
-                xtype: "textfield",
-                name: "title",
-            },
-            "->",
-            {
-                xtype: "button",
-                text: "Save",
-                handler: "saveDrawing",
-                tooltip: "Save Drawing",
-                iconCls: "x-fa fa-save",
-            },
-            "-",
-            {
-                xtype: "button",
-                text: "Cancel",
-                handler: "closeWindow",
-                tooltip: "close Window",
-                iconCls: "x-fa fa-times-circle",
-            },
-        ],
-    }, ],
+    items: [],
 });
