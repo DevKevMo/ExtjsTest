@@ -15,5 +15,17 @@ Ext.define("test.comp.draw.DrawImportWindow", {
     //set over create function
     drawContainer: null,
 
-    items: [],
+    items: [{
+        xtype: "toolbar",
+        dock: "top",
+        items: [{
+            xtype: "button",
+            text: "Cancel",
+            handler: "closeWindow",
+            tooltip: "close Window",
+            iconCls: "x-fa fa-times-circle",
+        }, ],
+    }, {
+        
+    }],
 });

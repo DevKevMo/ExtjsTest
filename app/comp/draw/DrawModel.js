@@ -9,21 +9,21 @@ Ext.define("test.comp.draw.DrawModel", {
                     mapping: "ID",
                 },
                 {
+                    name: "title",
+                    type: "string",
+                    mapping: "TITLE",
+                },
+                {
                     name: "link",
                     type: "string",
                     mapping: "LINK",
                 },
-                {
-                    name: "title",
-                    type: "string",
-                    mapping: "TITLE",
-                }
             ],
-            autoLoad: true,
             storeId: "drawListId",
+            autoLoad: true,
             proxy: {
                 type: "ajax",
-                url: "../../api/draw.cfc?method=getDraw",
+                url: "http://dokuwebdev.datasec.de/azubi_kmoritz/exttraining/test/app/api/draw.cfc?method=getDraw",
                 extraParams: {
                     SID: localStorage.getItem("userSessionKm"),
                 },
@@ -35,11 +35,23 @@ Ext.define("test.comp.draw.DrawModel", {
                     type: "json",
                 },
                 api: {
-                    read: "../../api/draw.cfc?method=getDraw", //calls load
+                    read: "http://dokuwebdev.datasec.de/azubi_kmoritz/exttraining/test/app/api/draw.cfc?method=getDraw", //calls load
                     update: "../../api/draw.cfc?method=updateDraw", //sync
                     destroy: "../../api/draw.cfc?method=deleteDraw", //sync 
                 },
             },
         },
+        drawJson: {
+            fields: [{
+                name: "data",
+                type: "auto",
+                mapping: "DATA",
+            }, {
+                name: "title",
+                type: "string",
+                mapping: "TITLE",
+            }],
+            storeId: "drawJsonId",
+        }
     },
 });

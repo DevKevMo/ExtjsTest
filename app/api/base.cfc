@@ -32,5 +32,14 @@
        </cffunction>
 
        <cffunction name="auth" access="remote" httpmethod="GET" returnFormat="JSON">
+           <cfargument name="SID" default="" hint="SessionId of from the user logged in" required="yes"
+               type="strings" />
+           <cfquery name="authUserQuery" datasource="ora8_azubi">
+               SELECT ID
+               FROM MORITZK_USER
+               WHERE SESSIONID = '#SID#'
+           </cfquery>
+
+           <cfreturn authUserQuery>
        </cffunction>
    </cfcomponent>

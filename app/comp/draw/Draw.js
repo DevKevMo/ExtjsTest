@@ -3,6 +3,7 @@ Ext.define("test.comp.draw.Draw", {
   xtype: "drawView",
   requires: ["test.comp.draw.DrawController", "test.comp.draw.DrawWindow", "test.comp.draw.DrawModel"],
   controller: "draw",
+  viewModel: "draw",
 
   dockedItems: [{
 

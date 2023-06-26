@@ -10,6 +10,8 @@
         <cfset returnStr.message="" />
         <cfset returnStr.data=[] />
         <cfset root="D:\\wwwroot\azubi_kmoritz\exttraining\test\app\user\" & userId & "\img\" />
+        <cfset link="http://dokuwebdev.datasec.de/azubi_kmoritz/exttraining/test/app/user/" & userId & "/img/" &
+            title />
         <cfset createFolder(root) />
 
         <!--- return str with Message and and Error status --->
@@ -18,17 +20,26 @@
         <cfif !createFileStr.Error>
             <cfquery name="addDrawing" datasource="ora8_azubi">
                 INSERT INTO MORITZK_DRAW (TITLE, LINK, USERID)
-                VALUES ('#title#', '#root##title#', #userId#)
+                VALUES ('#title#', '#link#', #userId#)
             </cfquery>
         </cfif>
 
         <cfset returnStr.message=#createFileStr.Message# />
-        <cfset returnStr.error=false />
+        <cfset returnStr.error=createFileStr.Error />
 
         <cfreturn returnStr>
     </cffunction>
 
-    <cffunction name="getDraw" access="remote" description="get a list of all drawings" auth="Kevin Moritz">
+    <cffunction name="getDraw" access="remote" description="get the link and title of drawings" auth="Kevin Moritz"
+        returnFormat="JSON">
+        <cfargument name="SID" default="" hint="SessionId of from the user logged in" required="yes" type="strings" />
+        <cfset userId=auth(SID) />
+        <cfquery name="getDrawingQuery" datasource="ora8_azubi">
+            SELECT ID, TITLE, LINK
+            FROM MORITZK_DRAW
+            WHERE USERID = 122
+        </cfquery>
+        <cfreturn getDrawingQuery>
     </cffunction>
 
 
