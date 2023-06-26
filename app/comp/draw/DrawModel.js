@@ -52,6 +52,8 @@ Ext.define("test.comp.draw.DrawModel", {
                 mapping: "TITLE",
             }],
             storeId: "drawJsonId",
+            autoLoad: true,
+            data: []
         }
     },
 });

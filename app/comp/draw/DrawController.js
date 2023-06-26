@@ -3,7 +3,6 @@ Ext.define("test.comp.draw.DrawController", {
   alias: "controller.draw",
 
   // Mouse functions for drawing
-
   onMouseDown: function (event) {
     this.drawing = true;
     var drawContainer = this.lookup("drawContainer");
@@ -167,7 +166,7 @@ Ext.define("test.comp.draw.DrawController", {
           type: "circle",
           x: sprite.attr.cx,
           y: sprite.attr.cy,
-          radius: sprite.attr.radius,
+          radius: sprite.attr.lineWidth,
           fillStyle: sprite.attr.fillStyle,
         });
       } else if (sprite.isSprite && sprite.type === "line") {
