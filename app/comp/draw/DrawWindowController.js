@@ -27,6 +27,7 @@ Ext.define("test.comp.draw.DrawWindowController", {
                     var data = JSON.parse(response.responseText);
                     Ext.toast(data.MESSAGE);
                     if (!data.ERROR) {
+                        Ext.StoreMgr.lookup("drawListId").load();
                         this.getView().destroy();
                     }
                 },

@@ -30,7 +30,7 @@ Ext.define('test.util.Utility', {
         surface.renderFrame()
     },
 
-    deleteDrawing: function (record, store) {
+    deleteDrawing: function (record, store, linkstore) {
         Ext.Ajax.request({
             url: "app/api/draw.cfc?method=deleteDraw",
             method: "POST",
@@ -38,11 +38,11 @@ Ext.define('test.util.Utility', {
                 record: JSON.stringify(record.data),
                 userSession: localStorage.getItem("userSessionKm"),
             },
-            success: (response) => {
-                Ext.toast("image Deleted")
-            },
+            success: (response) => {},
         });
         store.remove(record);
+        linkstore.remove(linkstore.getById(record.data.id));
+        Ext.toast("deleted Image: " + record.data.title)
     }
 
 });

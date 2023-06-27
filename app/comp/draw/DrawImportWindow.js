@@ -25,7 +25,7 @@ Ext.define("test.comp.draw.DrawImportWindow", {
             emptyText: "Enter search keyword",
             enableKeyEvents: true,
             listeners: {
-                keyup: "filterGrid" // Replace 'filterGrid' with the actual handler function name
+                change: "onTitleFilterChange" // Replace 'filterGrid' with the actual handler function name
             }
         }, "->", {
             xtype: "button",
@@ -33,12 +33,6 @@ Ext.define("test.comp.draw.DrawImportWindow", {
             handler: "closeWindow",
             tooltip: "close Window",
             iconCls: "x-fa fa-times-circle",
-        }, "-", {
-            xtype: "button",
-            text: "Reload",
-            handler: "reloadWindow",
-            tooltip: "reload Window",
-            iconCls: "x-fa fa-refresh"
         }],
     }, {
         xtype: 'gridpanel',

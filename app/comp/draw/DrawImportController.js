@@ -29,7 +29,7 @@ Ext.define("test.comp.draw.DrawImportController", {
         var drawContainer = this.view.drawContainer;
         var target = Ext.get(e.getTarget());
         if (target.hasCls('delete-button')) {
-            test.util.Utility.deleteDrawing(record, Ext.StoreMgr.lookup("drawJsonId"));
+            test.util.Utility.deleteDrawing(record, Ext.StoreMgr.lookup("drawJsonId"), Ext.StoreMgr.lookup("drawListId"));
 
         } else if (target.hasCls('import-button')) {
             test.util.Utility.createSurface(record, drawContainer);
@@ -42,7 +42,19 @@ Ext.define("test.comp.draw.DrawImportController", {
         }
     },
 
+    onTitleFilterChange: function (textfield, newValue, oldValue, eOpts) {
+        var store = Ext.StoreMgr.lookup("drawJsonId");
+        store.clearFilter();
+
+        if (newValue) {
+            store.filter('title', newValue); // Filter the store by the 'title' field based on the entered value
+        } else {
+            store.clearFilter(); // If no value entered, clear the filter to show all records
+        }
+    },
+
     closeWindow: function () {
         this.getView().destroy();
     },
+
 });
