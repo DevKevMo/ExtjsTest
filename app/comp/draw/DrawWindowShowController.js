@@ -13,10 +13,19 @@ Ext.define("test.comp.draw.DrawWindowShowController", {
         img.setWidth(size.width / 4);
     },
 
-    createImage: function (imgData, drawContainer) {
+    createImage: function (imgData, drawContainer) { //TODO: add a function to save the old surface and rerender it after creating the image 
         var surface = drawContainer.getSurface("main");
+        var drawingData = this.extractSurface(surface);
         surface.removeAll();
-        Ext.each(imgData, function (e) {
+        this.createSurface(imgData, surface);
+        var Image = drawContainer.getImage().data;
+        surface.removeAll();
+        this.createSurface(drawingData, surface);
+        return Image;
+    },
+
+    createSurface: function (drawingData, surface) {
+        Ext.each(drawingData, function (e) {
             if (e.type === "line") {
                 var line = Ext.create("Ext.draw.sprite.Line", {
                     fromX: e.fromX,
@@ -37,13 +46,37 @@ Ext.define("test.comp.draw.DrawWindowShowController", {
                 });
                 surface.add(dot);
             }
-        }, surface)
+        }, surface);
         surface.renderFrame()
-        var Image = drawContainer.getImage().data;
-        surface.removeAll();
-        surface.renderFrame();
-        return Image;
     },
+
+    extractSurface: function (surface) {
+        var sprites = surface.getItems();
+        var drawingData = [];
+        Ext.each(sprites, function (sprite) {
+            if (sprite.isSprite && sprite.type === "circle") {
+                drawingData.push({
+                    type: "circle",
+                    x: sprite.attr.cx,
+                    y: sprite.attr.cy,
+                    radius: sprite.attr.lineWidth,
+                    fillStyle: sprite.attr.fillStyle,
+                });
+            } else if (sprite.isSprite && sprite.type === "line") {
+                drawingData.push({
+                    type: "line",
+                    fromX: sprite.attr.fromX,
+                    fromY: sprite.attr.fromY,
+                    toX: sprite.attr.toX,
+                    toY: sprite.attr.toY,
+                    strokeStyle: sprite.attr.strokeStyle,
+                    lineWidth: sprite.attr.lineWidth,
+                });
+            }
+        });
+        return drawingData
+    },
+
 
     closeWindow: function () {
         this.getView().destroy();

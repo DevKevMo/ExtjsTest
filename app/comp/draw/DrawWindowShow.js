@@ -8,6 +8,7 @@ Ext.define("test.comp.draw.DrawWindowShow", {
     layout: "vbox",
     autoShow: true,
     modal: true,
+    closable: false,
     resizable: false,
     controller: "drawWindowShowController",
 
