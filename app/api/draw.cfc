@@ -36,13 +36,23 @@
         <cfquery name="getDrawingQuery" datasource="ora8_azubi">
             SELECT ID, TITLE, LINK
             FROM MORITZK_DRAW
-            WHERE USERID = 122
+            WHERE USERID = #userId#
         </cfquery>
         <cfreturn getDrawingQuery>
     </cffunction>
 
 
-    <cffunction name="deleteDraw" access="remote" description="save draw reference" auth="Kevin Moritz">
+    <cffunction name="deleteDraw" access="remote" description="delete draw reference" auth="Kevin Moritz">
+        <cfargument name="record" default="" hint="record of drawing in grid" required="yes" type="string" />
+        <cfargument name="userSession" default="" required="yes" type="string" />
+        <cfset data=deserializeJSON(record) />
+        <cfset userId=auth(userSession) />
+        <cfset root="D:\\wwwroot\azubi_kmoritz\exttraining\test\app\user\" & userId & "\img\" & data.title />
+        <cfset removeFile(root) />
+        <cfdump var="#data#" format="html" output="#expandPath('./returnStr_dump.html')#" />
+        <cfquery name="deleteDrawing" datasource="ora8_azubi">
+            DELETE FROM MORITZK_DRAW WHERE ID = #data.ID#
+        </cfquery>
     </cffunction>
     <cffunction name="updateDraw" access="remote" description="save draw reference" auth="Kevin Moritz">
     </cffunction>

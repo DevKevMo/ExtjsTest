@@ -31,7 +31,17 @@ Ext.define('test.util.Utility', {
     },
 
     deleteDrawing: function (record) {
-        debugger
+        Ext.Ajax.request({
+            url: "app/api/draw.cfc?method=deleteDraw",
+            method: "POST",
+            params: {
+                record: JSON.stringify(record.data),
+                userSession: localStorage.getItem("userSessionKm"),
+            },
+            success: (response) => {
+                Ext.toast("image Deleted")
+            },
+        });
     }
 
 });

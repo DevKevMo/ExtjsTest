@@ -31,7 +31,12 @@
            <cfreturn returnStr>
        </cffunction>
 
-       <cffunction name="auth" access="remote" httpmethod="GET" returnFormat="JSON">
+       <cffunction name="removeFile" access="remote">
+           <cfargument name="root" type="string" required="true" />
+           <cffile action="delete" file="#root#">
+       </cffunction>
+
+       <cffunction name="auth" access="remote" httpmethod="GET">
            <cfargument name="SID" default="" hint="SessionId of from the user logged in" required="yes"
                type="strings" />
            <cfquery name="authUserQuery" datasource="ora8_azubi">
@@ -39,7 +44,6 @@
                FROM MORITZK_USER
                WHERE SESSIONID = '#SID#'
            </cfquery>
-
-           <cfreturn authUserQuery>
+           <cfreturn authUserQuery.ID>
        </cffunction>
    </cfcomponent>

@@ -84,6 +84,10 @@ Ext.define("test.comp.draw.DrawWindowShowController", {
         this.closeWindow();
     },
 
+    deleteRecord: function () {
+        test.util.Utility.deleteDrawing(this.view.record);
+    },
+
     closeWindow: function () {
         this.getView().destroy();
     },
