@@ -29,7 +29,7 @@ Ext.define("test.comp.draw.DrawImportController", {
         var drawContainer = this.view.drawContainer;
         var target = Ext.get(e.getTarget());
         if (target.hasCls('delete-button')) {
-            test.util.Utility.deleteDrawing(record);
+            test.util.Utility.deleteDrawing(record, Ext.StoreMgr.lookup("drawJsonId"));
 
         } else if (target.hasCls('import-button')) {
             test.util.Utility.createSurface(record, drawContainer);

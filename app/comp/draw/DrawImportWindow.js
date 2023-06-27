@@ -45,7 +45,7 @@ Ext.define("test.comp.draw.DrawImportWindow", {
         store: "drawJsonId",
         autoScroll: true,
         overflowY: "auto",
-        height: 400,
+        maxHeight: 400,
         width: 600,
         listeners: {
             cellclick: "recordClick",

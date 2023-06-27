@@ -30,7 +30,7 @@ Ext.define('test.util.Utility', {
         surface.renderFrame()
     },
 
-    deleteDrawing: function (record) {
+    deleteDrawing: function (record, store) {
         Ext.Ajax.request({
             url: "app/api/draw.cfc?method=deleteDraw",
             method: "POST",
@@ -42,6 +42,7 @@ Ext.define('test.util.Utility', {
                 Ext.toast("image Deleted")
             },
         });
+        store.remove(record);
     }
 
 });
