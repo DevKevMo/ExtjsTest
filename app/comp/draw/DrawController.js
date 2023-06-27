@@ -83,7 +83,7 @@ Ext.define("test.comp.draw.DrawController", {
   },
 
   //draw functions
-
+  //FIXME: dont work with lines becouse the distance between the lines is to big 
   interpolationDraw: function (type, surface, item, prevItem) {
     if (type === "Line") {
       var dx = item.toX - prevItem.toX;
@@ -160,6 +160,8 @@ Ext.define("test.comp.draw.DrawController", {
     });
   },
 
+
+  //FIXME: reset position on array when import (maybe load position and array from imported drawing into draw container)
   goForward: function () {
     var drawContainer = this.lookup("drawContainer");
     this.setPositionInArray(this.getPositionInArray() + 1)

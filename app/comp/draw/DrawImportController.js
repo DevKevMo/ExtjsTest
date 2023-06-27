@@ -33,7 +33,6 @@ Ext.define("test.comp.draw.DrawImportController", {
 
         } else if (target.hasCls('import-button')) {
             test.util.Utility.createSurface(record, drawContainer);
-
         } else {
             Ext.create("test.comp.draw.DrawWindowShow", {
                 drawContainer: drawContainer,

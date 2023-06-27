@@ -37,8 +37,6 @@ Ext.define("test.comp.draw.Draw", {
         },
       },
       "-",
-
-      //TODO: Write a function that make it possible to switch back and forth between sprite elements 
       {
         xtype: "button",
         iconCls: "x-fa fa-arrow-left",
