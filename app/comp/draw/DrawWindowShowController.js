@@ -13,7 +13,7 @@ Ext.define("test.comp.draw.DrawWindowShowController", {
         img.setWidth(size.width / 4);
     },
 
-    createImage: function (imgData, drawContainer) { //TODO: add a function to save the old surface and rerender it after creating the image 
+    createImage: function (imgData, drawContainer) {
         var surface = drawContainer.getSurface("main");
         var drawingData = this.extractSurface(surface);
         surface.removeAll();
@@ -77,6 +77,12 @@ Ext.define("test.comp.draw.DrawWindowShowController", {
         return drawingData
     },
 
+    importDrawing: function () {
+        record = this.view.record;
+        drawField = this.view.drawContainer;
+        test.util.Utility.createSurface(record, drawField);
+        this.closeWindow();
+    },
 
     closeWindow: function () {
         this.getView().destroy();

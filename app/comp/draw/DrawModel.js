@@ -36,8 +36,6 @@ Ext.define("test.comp.draw.DrawModel", {
                 },
                 api: {
                     read: "http://dokuwebdev.datasec.de/azubi_kmoritz/exttraining/test/app/api/draw.cfc?method=getDraw", //calls load
-                    update: "../../api/draw.cfc?method=updateDraw", //sync
-                    destroy: "../../api/draw.cfc?method=deleteDraw", //sync 
                 },
             },
         },

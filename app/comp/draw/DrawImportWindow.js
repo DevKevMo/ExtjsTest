@@ -2,7 +2,7 @@ Ext.define("test.comp.draw.DrawImportWindow", {
     extend: "Ext.window.Window",
     xtype: "drawWindow",
 
-    requires: ["test.comp.draw.DrawImportController", "test.comp.draw.DrawWindowShow"],
+    requires: ["test.comp.draw.DrawImportController", "test.comp.draw.DrawWindowShow", "test.util.Utility"],
 
     title: "Save Drawing",
     layout: "vbox",
@@ -21,6 +21,13 @@ Ext.define("test.comp.draw.DrawImportWindow", {
         width: "100%",
         dock: "top",
         items: [{
+            xtype: "textfield",
+            emptyText: "Enter search keyword",
+            enableKeyEvents: true,
+            listeners: {
+                keyup: "filterGrid" // Replace 'filterGrid' with the actual handler function name
+            }
+        }, "->", {
             xtype: "button",
             text: "Cancel",
             handler: "closeWindow",

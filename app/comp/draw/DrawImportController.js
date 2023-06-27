@@ -3,7 +3,7 @@ Ext.define("test.comp.draw.DrawImportController", {
     alias: "controller.drawImportController",
 
     init: function () {
-        var drawList = Ext.StoreMgr.lookup("drawListId").reload();
+        var drawList = Ext.StoreMgr.lookup("drawListId").load();
         Ext.each(drawList.data.items, function (item) { // loop over all Images
             Ext.Ajax.request({ // get Json data from Image
                 url: item.data.link,
@@ -28,17 +28,12 @@ Ext.define("test.comp.draw.DrawImportController", {
     recordClick: function (grid, td, cellIndex, record, tr, rowIndex, e, eOpts) {
         var drawContainer = this.view.drawContainer;
         var target = Ext.get(e.getTarget());
-
         if (target.hasCls('delete-button')) {
-            var recordId = target.getAttribute('data-record-id');
-            debugger
-            // Handle delete button click for the corresponding record
-            // You can use the recordId to identify and perform the delete operation
+            test.util.Utility.deleteDrawing(record);
+
         } else if (target.hasCls('import-button')) {
-            debugger
-            var recordId = target.getAttribute('data-record-id');
-            // Handle import button click for the corresponding record
-            // You can use the recordId to identify and perform the import operation
+            test.util.Utility.createSurface(record, drawContainer);
+
         } else {
             Ext.create("test.comp.draw.DrawWindowShow", {
                 drawContainer: drawContainer,

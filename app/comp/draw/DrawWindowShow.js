@@ -2,7 +2,7 @@ Ext.define("test.comp.draw.DrawWindowShow", {
     extend: "Ext.window.Window",
     xtype: "drawWindowShow",
 
-    requires: ["test.comp.draw.DrawWindowShowController"],
+    requires: ["test.comp.draw.DrawWindowShowController", "test.util.Utility"],
 
     title: "Show Drawing",
     layout: "vbox",
@@ -29,7 +29,7 @@ Ext.define("test.comp.draw.DrawWindowShow", {
             {
                 xtype: "button",
                 text: "import",
-                handler: "saveDrawing",
+                handler: "importDrawing",
                 tooltip: "Save Drawing",
                 iconCls: "x-fa fa-save",
             },

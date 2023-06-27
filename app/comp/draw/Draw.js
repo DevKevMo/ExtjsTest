@@ -38,6 +38,18 @@ Ext.define("test.comp.draw.Draw", {
       },
       "-",
       {
+        xtype: "button",
+        iconCls: "x-fa fa-arrow-left",
+        handler: "goBack",
+        tooltip: "Go Back",
+      }, {
+        xtype: "button",
+        iconCls: "x-fa fa-arrow-right",
+        handler: "goForward",
+        tooltip: "Go Forward",
+      },
+      "-",
+      {
         xtype: "segmentedbutton",
         items: [{
             text: "Line",
@@ -61,8 +73,7 @@ Ext.define("test.comp.draw.Draw", {
         handler: "onImportClick",
         tooltip: "ImportDrawing",
         iconCls: "x-fa fa-upload",
-      },
-      "-",
+      }, "-",
       {
         xtype: "button",
         text: "Save",

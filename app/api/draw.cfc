@@ -4,7 +4,6 @@
         <cfargument name="title" default="" hint="title of the image" required="yes" type="strings" />
         <cfargument name="userId" default="" hint="userId over session storage" required="yes" type="number" />
         <cfargument name="dataObj" default="" hint="data array with draw sprites" required="yes" type="strings" />
-
         <cfset returnStr=structNew() />
         <cfset returnStr.error=true />
         <cfset returnStr.message="" />
