@@ -4,6 +4,7 @@ Ext.define("test.comp.draw.DrawController", {
 
   // Mouse functions for drawing
   onMouseDown: function (event) {
+    this.clearLogForBackAndForth();
     this.drawing = true;
     var drawContainer = this.lookup("drawContainer");
     var surface = drawContainer.getSurface("main");
@@ -19,6 +20,7 @@ Ext.define("test.comp.draw.DrawController", {
       });
       surface.add(line);
       this.line = line;
+      this.setArrayOfStripes(this.line, true)
     } else if (this.getDrawingMode() === "Circle") {
       var dot = Ext.create("Ext.draw.sprite.Circle", {
         x: startPoint[0],
@@ -28,6 +30,7 @@ Ext.define("test.comp.draw.DrawController", {
       });
       surface.add(dot);
       this.dot = dot;
+      this.setArrayOfStripes(this.dot, true)
     }
     surface.renderFrame();
     this.drawing = true;
@@ -51,7 +54,7 @@ Ext.define("test.comp.draw.DrawController", {
         });
         surface.add(lineSegment);
         this.line = lineSegment;
-
+        this.setArrayOfStripes(lineSegment, false)
         if (prevLineSegment && this.getWidth() > 6) {
           this.interpolationDraw(this.getDrawingMode(), surface, lineSegment, prevLineSegment)
         }
@@ -65,6 +68,7 @@ Ext.define("test.comp.draw.DrawController", {
         });
         surface.add(dot);
         this.dot = dot;
+        this.setArrayOfStripes(dot, false)
         if (prevDot) {
           this.interpolationDraw(this.getDrawingMode(), surface, dot, prevDot)
         }
@@ -105,7 +109,7 @@ Ext.define("test.comp.draw.DrawController", {
           lineWidth: this.getWidth(),
         });
         surface.add(line);
-        surface.add(lineDot);
+        this.setArrayOfStripes(line, false)
       }
     } else if (type === "Circle") {
       var dx = item.x - prevItem.x;
@@ -123,6 +127,7 @@ Ext.define("test.comp.draw.DrawController", {
           radius: this.getWidth(),
           fillStyle: this.getColor(),
         });
+        this.setArrayOfStripes(lineDot, false)
         surface.add(lineDot);
       }
     }
@@ -153,6 +158,47 @@ Ext.define("test.comp.draw.DrawController", {
     Ext.create("test.comp.draw.DrawImportWindow", {
       drawContainer: drawContainer,
     });
+  },
+
+  goForward: function () {
+    var drawContainer = this.lookup("drawContainer");
+    this.setPositionInArray(this.getPositionInArray() + 1)
+    var surface = drawContainer.getSurface("main");
+    var elements = this.getArrayOfStripes()[this.getArrayOfStripes().length - 1 + this.getPositionInArray()]
+    if (elements) {
+      elements.map(x => {
+        surface.add(x);
+      });
+      surface.renderFrame();
+    } else {
+      this.setPositionInArray(this.getPositionInArray() - 1)
+      Ext.toast("sorry cant go forward")
+    }
+  },
+
+  goBack: function () {
+    var drawContainer = this.lookup("drawContainer");
+    var surface = drawContainer.getSurface("main");
+    this.setPositionInArray(this.getPositionInArray() - 1)
+    var elements = this.getArrayOfStripes()[this.getArrayOfStripes().length + this.getPositionInArray()]
+    if (elements) {
+      elements.map(x => {
+        surface.remove(x);
+      });
+      surface.renderFrame();
+    } else {
+      this.setPositionInArray(this.getPositionInArray() + 1)
+      Ext.toast("sorry cant go back")
+    }
+  },
+
+  clearLogForBackAndForth: function () {
+    var array = this.getArrayOfStripes();
+    var position = this.getPositionInArray();
+    if (position < 0) {
+      array.splice(position)
+      this.setPositionInArray(0)
+    }
   },
 
   onSaveClick: function () {
@@ -221,4 +267,28 @@ Ext.define("test.comp.draw.DrawController", {
   getDrawingMode: function () {
     return this.drawingMode || "Line";
   },
+
+  setArrayOfStripes: function (element, start) {
+    if (this.arrayOfStripes === undefined) {
+      this.arrayOfStripes = []; // Initialize the array if it's undefined
+    }
+    if (start) {
+      this.arrayOfStripes.push([element]); // Start a new sub-array with the current element
+    } else {
+      var lastEntry = this.arrayOfStripes.length - 1;
+      this.arrayOfStripes[lastEntry].push(element); // Add the element to the last sub-array
+    }
+  },
+
+  getArrayOfStripes: function () {
+    return this.arrayOfStripes || null;
+  },
+
+  setPositionInArray: function (position) {
+    this.position = position
+  },
+
+  getPositionInArray: function () {
+    return this.position || null
+  }
 });

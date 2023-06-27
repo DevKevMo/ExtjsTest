@@ -10,11 +10,11 @@ Ext.define("test.comp.draw.DrawWindowController", {
         img.setWidth(size.width / 4);
     },
 
-    saveDrawing: function (btn) {
-        var title = btn.up("toolbar").down("textfield").value;
-        var drawingData = Ext.encode(btn.up("drawWindow").drawingData);
-        var userId = localStorage.getItem("userIdKm");
-        if (drawingData != '[]') {
+    saveDrawing: function () {
+        var title = this.lookup("imageTitle").value;
+        var drawingData = Ext.encode(this.view.drawingData);
+        if (drawingData != '[]' && title != "") {
+            var userId = localStorage.getItem("userIdKm");
             Ext.Ajax.request({
                 url: "app/api/draw.cfc?method=addDrawing",
                 method: "POST",
@@ -35,6 +35,12 @@ Ext.define("test.comp.draw.DrawWindowController", {
         } else {
             Ext.toast("cant upload empty file");
             this.getView().destroy();
+        }
+    },
+
+    onTextFieldSpecialKey: function (field, e) {
+        if (e.getKey() === e.ENTER) {
+            this.saveDrawing();
         }
     },
 

@@ -26,7 +26,11 @@ Ext.define("test.comp.draw.DrawWindow", {
         },
         {
           xtype: "textfield",
+          reference: "imageTitle",
           name: "title",
+          listeners: {
+            specialkey: "onTextFieldSpecialKey",
+          },
         },
         "->",
         {
