@@ -86,6 +86,7 @@ Ext.define("test.comp.draw.DrawWindowShowController", {
 
     deleteRecord: function () {
         test.util.Utility.deleteDrawing(this.view.record, Ext.StoreMgr.lookup("drawJsonId"));
+        this.closeWindow()
     },
 
     closeWindow: function () {

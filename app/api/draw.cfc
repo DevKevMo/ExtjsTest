@@ -49,7 +49,6 @@
         <cfset userId=auth(userSession) />
         <cfset root="D:\\wwwroot\azubi_kmoritz\exttraining\test\app\user\" & userId & "\img\" & data.title />
         <cfset removeFile(root) />
-        <cfdump var="#data#" format="html" output="#expandPath('./returnStr_dump.html')#" />
         <cfquery name="deleteDrawing" datasource="ora8_azubi">
             DELETE FROM MORITZK_DRAW WHERE ID = #data.ID#
         </cfquery>
