@@ -7,5 +7,18 @@
 }
 
 .x-tab-inner-default {
-    color: black
+    color: lightgrey
+}
+
+.x-tab.x-tab-active.x-tab-default .x-tab-inner-default {
+    color: black;
+}
+
+.x-toolbar-default {
+    padding: 6px 0 6px 8px;
+    border-style: solid;
+    border-color: #c7b0b0;
+    border-width: 2px !important;
+    background-image: none;
+    background-color: #fff;
 }

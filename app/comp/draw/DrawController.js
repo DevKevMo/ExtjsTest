@@ -41,6 +41,7 @@ Ext.define("test.comp.draw.DrawController", {
       var drawContainer = this.lookup("drawContainer");
       var surface = drawContainer.getSurface("main");
       var endPoint = [event.pageX, event.pageY - 220];
+      var interpolation = false; // state of interpolation (active or not)
 
       if (this.getDrawingMode() === "Line") {
         var prevLineSegment = this.line;
@@ -55,7 +56,7 @@ Ext.define("test.comp.draw.DrawController", {
         surface.add(lineSegment);
         this.line = lineSegment;
         this.setArrayOfStripes(lineSegment, false)
-        if (prevLineSegment && this.getWidth() > 6) {
+        if (prevLineSegment && this.getWidth() > 6 && interpolation) {
           this.interpolationDraw(this.getDrawingMode(), surface, lineSegment, prevLineSegment)
         }
       } else if (this.getDrawingMode() === "Circle") {
@@ -69,7 +70,7 @@ Ext.define("test.comp.draw.DrawController", {
         surface.add(dot);
         this.dot = dot;
         this.setArrayOfStripes(dot, false)
-        if (prevDot) {
+        if (prevDot && interpolation) {
           this.interpolationDraw(this.getDrawingMode(), surface, dot, prevDot)
         }
       }
@@ -83,7 +84,7 @@ Ext.define("test.comp.draw.DrawController", {
   },
 
   //draw functions
-  //FIXME: dont work with lines becouse the distance between the lines is to big 
+
   interpolationDraw: function (type, surface, item, prevItem) {
     if (type === "Line") {
       var dx = item.toX - prevItem.toX;
@@ -160,8 +161,6 @@ Ext.define("test.comp.draw.DrawController", {
     });
   },
 
-
-  //FIXME: reset position on array when import (maybe load position and array from imported drawing into draw container)
   goForward: function () {
     var drawContainer = this.lookup("drawContainer");
     this.setPositionInArray(this.getPositionInArray() + 1)
@@ -242,9 +241,11 @@ Ext.define("test.comp.draw.DrawController", {
     var surface = drawContainer.getSurface("main");
     surface.removeAll();
     surface.renderFrame();
+    this.arrayOfStripes = [];
+    this.setPositionInArray(0);
   },
 
-  // Styling (setter and getter)
+  // setter and getter
 
   setColor: function (color) {
     this.color = `#${color}`;
@@ -292,5 +293,5 @@ Ext.define("test.comp.draw.DrawController", {
 
   getPositionInArray: function () {
     return this.position || null
-  }
+  },
 });

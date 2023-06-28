@@ -12,12 +12,11 @@ Ext.define("test.comp.draw.Draw", {
     overflowX: "auto",
     items: [{
         xtype: "tbtext",
-        text: "color Picker:",
+        text: "Mouse Color:",
       },
       {
         xtype: "colorpicker",
         reference: "colorpicker",
-        fieldLabel: "Color",
         listeners: {
           select: "onColorSelect",
         },
