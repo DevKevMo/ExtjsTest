@@ -39,11 +39,15 @@ Ext.define("test.comp.chart.ChartController", {
       }); */
   },
 
+  clearStore: function () {
+    Ext.StoreMgr.lookup("markedLinesStore").removeAll();
+  },
+
   addCountry: function (btn) {
     Ext.create("test.comp.chart.AddCountryWindow", {
-      cartasian: this.lookup("markedLines")
+      graph: this.lookup("markedLines")
     });
   },
 
- 
+
 });

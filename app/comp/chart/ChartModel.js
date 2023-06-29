@@ -37,7 +37,7 @@ Ext.define("test.comp.chart.ChartModel", {
         },
         markedLinesStore: {
             storeId: "markedLinesStore",
-            fields: ['year', 'data1', 'data2', 'data3', 'data4'],
+            fields: ["year", "data1", "data2", "data3", "data4", "data1Title", "data2Title", "data3Title", "data4Title"],
         }
     },
 });
