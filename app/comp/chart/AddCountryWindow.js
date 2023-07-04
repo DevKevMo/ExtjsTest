@@ -22,7 +22,8 @@ Ext.define("test.comp.chart.AddCountryWindow", {
         dock: "top",
         items: [{
             xtype: "textfield",
-            emptyText: "Enter search keyword",
+            emptyText: "Enter Country name keyword",
+            width: "400px",
             enableKeyEvents: true,
             listeners: {
                 change: "onNameFilterChange" // Replace 'filterGrid' with the actual handler function name

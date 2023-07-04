@@ -28,12 +28,18 @@ Ext.define("test.comp.draw.DrawImportController", {
     recordClick: function (grid, td, cellIndex, record, tr, rowIndex, e, eOpts) {
         var drawContainer = this.view.drawContainer;
         var target = Ext.get(e.getTarget());
+
+        // delete drawing in file and db reference 
         if (target.hasCls('delete-button')) {
             test.util.Utility.deleteDrawing(record, Ext.StoreMgr.lookup("drawJsonId"), Ext.StoreMgr.lookup("drawListId"));
 
+        // import the drawing to the draw container 
         } else if (target.hasCls('import-button')) {
             test.util.Utility.createSurface(record, drawContainer);
-        } else {
+        } 
+
+        // load new window to create the drawing inside the drawfield with the coordiantes of the json fiel
+        else {
             Ext.create("test.comp.draw.DrawWindowShow", {
                 drawContainer: drawContainer,
                 record: record,

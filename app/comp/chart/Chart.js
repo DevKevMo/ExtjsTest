@@ -170,7 +170,7 @@ Ext.define("test.comp.chart.Chart", {
       renderer: function () {
         storeItems = Ext.StoreMgr.lookup("markedLinesStore").data.items;
         if (storeItems.length && storeItems[0].data.data1Title) {
-          this.setTitle(storeItems[0].data.data2Title)
+          this.setTitle(storeItems[0].data.data1Title)
         }
       }
     }, {
@@ -232,7 +232,7 @@ Ext.define("test.comp.chart.Chart", {
       renderer: function () {
         storeItems = Ext.StoreMgr.lookup("markedLinesStore").data.items;
         if (storeItems.length && storeItems[0].data.data3Title) {
-          this.setTitle(storeItems[0].data.data2Title)
+          this.setTitle(storeItems[0].data.data3Title)
         }
       }
     }, {
@@ -263,7 +263,7 @@ Ext.define("test.comp.chart.Chart", {
       renderer: function () {
         storeItems = Ext.StoreMgr.lookup("markedLinesStore").data.items;
         if (storeItems.length && storeItems[0].data.data4Title) {
-          this.setTitle(storeItems[0].data.data2Title)
+          this.setTitle(storeItems[0].data.data4Title)
         }
       }
     }]

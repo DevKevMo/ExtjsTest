@@ -34,12 +34,13 @@ Ext.define("test.comp.chart.AddCountryWindowController", {
 
                     if (!store.data.items.length) {
                         recordData[1].map(x => {
-                            value = x.value || 0
-                            store.add({
-                                "year": x.date,
-                                "data1": value,
-                                "data1Title": title,
-                            })
+                            if (x.value !== undefined) {
+                                store.add({
+                                    "year": x.date,
+                                    "data1": x.value,
+                                    "data1Title": title,
+                                })
+                            }
                         });
                     } else {
                         const fieldsToUpdate = ["data2", "data3", "data4"];
@@ -48,9 +49,10 @@ Ext.define("test.comp.chart.AddCountryWindowController", {
                             if (store.data.items.some(record => record.get(field) === undefined)) {
                                 recordData[1].map(x => {
                                     storeRecord = store.findRecord('year', x.date)
-                                    value = x.value || 0
-                                    storeRecord.set(`${field}`, value);
-                                    storeRecord.set(`${field}Title`, title);
+                                    if (x.value !== undefined) {
+                                        storeRecord.set(`${field}`, x.value);
+                                        storeRecord.set(`${field}Title`, title);
+                                    }
                                 });
                                 return true; // Stop iteration if a field is updated
                             }
