@@ -53,7 +53,10 @@ Ext.define("test.comp.draw.DrawWindowShowController", {
     extractSurface: function (surface) {
         var sprites = surface.getItems();
         var drawingData = [];
+
+        // loop sprites and the surface and save theire coordiantes into the Array variable drawingData
         Ext.each(sprites, function (sprite) {
+            // Create Circle 
             if (sprite.isSprite && sprite.type === "circle") {
                 drawingData.push({
                     type: "circle",
@@ -62,6 +65,7 @@ Ext.define("test.comp.draw.DrawWindowShowController", {
                     radius: sprite.attr.lineWidth,
                     fillStyle: sprite.attr.fillStyle,
                 });
+            // Create Line 
             } else if (sprite.isSprite && sprite.type === "line") {
                 drawingData.push({
                     type: "line",
@@ -80,7 +84,7 @@ Ext.define("test.comp.draw.DrawWindowShowController", {
     importDrawing: function () {
         record = this.view.record;
         drawField = this.view.drawContainer;
-        test.util.Utility.createSurface(record, drawField);
+        test.util.Utility.createSurface(record, drawField); 
         this.closeWindow();
     },
 

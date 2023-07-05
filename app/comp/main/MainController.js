@@ -5,6 +5,7 @@ Ext.define("test.comp.main.MainController", {
 
   init: function (test, value) {
     var sessionSet = localStorage.getItem("userSessionKm");
+    // direct to login window if user has no Session 
     if (!sessionSet) {
       Ext.create({
         xtype: "login",

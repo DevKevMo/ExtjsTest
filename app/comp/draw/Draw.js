@@ -92,8 +92,8 @@ Ext.define("test.comp.draw.Draw", {
   }],
   items: [{
     xtype: "draw",
-    title: "Field:",
     flex: 1,
+    title: "Field:",
     reference: "drawContainer",
     sprites: [],
     listeners: {

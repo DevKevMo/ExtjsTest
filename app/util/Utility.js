@@ -1,6 +1,24 @@
 Ext.define('test.util.Utility', {
     singleton: true,
 
+    // for all components 
+    //TODO: replace the existing ajax requests with the utility one 
+
+    makeAjaxRequest: function (url, method, jsonData, successCallback) {
+        Ext.Ajax.request({
+          url: url,
+          method: method,
+          jsonData: jsonData,
+          reader: {
+            type: "json",
+          },
+          success: successCallback,
+        });
+      },
+
+
+    // for draw components 
+
     createSurface: function (record, container) {
         var surface = container.getSurface("main");
         var data = record.data.data
@@ -43,6 +61,6 @@ Ext.define('test.util.Utility', {
         store.remove(record);
         linkstore.remove(linkstore.getById(record.data.id));
         Ext.toast("deleted Image: " + record.data.title)
-    }
+    },
 
 });

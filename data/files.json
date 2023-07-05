@@ -1,0 +1,25 @@
+[
+    {
+        "name": "Documents",
+        "leaf": false,
+        "children": [
+            {
+                "name": "Invoices",
+                "leaf": false,
+                "children": [
+                    { "name": "invoice1.pdf", "leaf": true },
+                    { "name": "invoice2.pdf", "leaf": true }
+                ]
+            },
+            { "name": "Notes.txt", "leaf": true }
+        ]
+    },
+    {
+        "name": "Pictures",
+        "leaf": false,
+        "children": [
+            { "name": "photo1.jpg", "leaf": true },
+            { "name": "photo2.jpg", "leaf": true }
+        ]
+    }
+]

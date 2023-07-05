@@ -19,6 +19,7 @@ Ext.define("test.comp.main.Main", {
       title: "Chart",
     },
     {
+      xtype: "treeView",
       title: "tree",
     },
   ],

@@ -7,7 +7,11 @@ Ext.application({
 
   name: "test",
 
-  requires: ["test.*"],
+  requires: [
+    "test.*",
+    'Ext.tree.Panel',
+    'Ext.data.TreeStore'
+],
 
   mainView: "test.comp.main.Main",
 });
