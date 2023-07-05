@@ -39,11 +39,22 @@
        <cffunction name="auth" access="remote" httpmethod="GET">
            <cfargument name="SID" default="" hint="SessionId of from the user logged in" required="yes"
                type="strings" />
+           <cfset stReturn={"success"=false,"userId"=0 ,"Message"="" } />
+
            <cfquery name="authUserQuery" datasource="ora8_azubi">
                SELECT ID
                FROM MORITZK_USER
                WHERE SESSIONID = '#SID#'
            </cfquery>
-           <cfreturn authUserQuery.ID>
+
+           <cfif authUserQuery.recordCount>
+               <cfset stReturn["success"]=true />
+               <cfset stReturn["userId"]=authUserQuery.ID />
+               <cfset stReturn["Message"]="userSession is valid" />
+               <cfelse>
+                   <cfset stReturn["Message"]="userSession is not valid" />
+           </cfif>
+
+           <cfreturn stReturn>
        </cffunction>
    </cfcomponent>

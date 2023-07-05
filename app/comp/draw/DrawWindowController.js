@@ -14,13 +14,13 @@ Ext.define("test.comp.draw.DrawWindowController", {
         var title = this.lookup("imageTitle").value;
         var drawingData = Ext.encode(this.view.drawingData);
         if (drawingData != '[]' && title != "") {
-            var userId = localStorage.getItem("userIdKm");
+            var userSession = localStorage.getItem("userSessionKm");
             Ext.Ajax.request({
                 url: "app/api/draw.cfc?method=addDrawing",
                 method: "POST",
                 params: {
                     title: title,
-                    userId: userId,
+                    SID: userSession,
                     dataObj: drawingData,
                 },
                 success: (response) => {

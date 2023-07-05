@@ -16,7 +16,6 @@ Ext.define("test.comp.login.LoginController", {
         Ext.toast(data.MESSAGE);
         if (!data.ERROR) {
           localStorage.setItem("userSessionKm", data.DATA.sId);
-          localStorage.setItem("userIdKm", data.DATA.uId);
           this.getView().destroy();
         } else {
           form.reset();

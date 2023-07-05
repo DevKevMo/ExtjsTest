@@ -24,7 +24,7 @@
                 WHERE ID = #userExistQuery.ID#
             </cfquery>
             <cfset createFolder("D:\\wwwroot\azubi_kmoritz\exttraining\test\app\user\" & userExistQuery.ID) />
-            <cfset returnStr.Data={"sId":SID,"uId": userExistQuery.ID} />
+            <cfset returnStr.Data={"sId":SID} />
             <cfset returnStr.message="success: update SessionId" />
             <cfset returnStr.error=false />
         </cfif>
