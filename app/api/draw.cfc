@@ -38,7 +38,6 @@
         returnFormat="JSON">
         <cfargument name="SID" default="" hint="SessionId of from the user logged in" required="yes" type="strings" />
         <cfset userId=auth(SID).userId />
-        <cfdump var="#userId#" format="html" output="#expandPath('./returnStr_dump.html')#" />
         <cfquery name="getDrawingQuery" datasource="ora8_azubi">
             SELECT ID, TITLE, LINK
             FROM MORITZK_DRAW

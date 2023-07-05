@@ -2,6 +2,7 @@
 
        <cffunction name="createFolder" access="remote">
            <cfargument name="root" type="string" hint="path of folder" required="true" />
+
            <cfif !DirectoryExists(root)>
                <cfset DirectoryCreate(root) />
                <cfif !fileExists(root & ".gitignore" )>
@@ -15,7 +16,6 @@
            <cfargument name="root" type="string" required="true" />
            <cfargument name="data" type="string" required="true" />
            <cfargument name="title" type="string" required="true" />
-
            <cfset fileRoot=root & title />
            <cfset returnStr=structNew() />
            <cfset returnStr.Message="" />
@@ -28,6 +28,7 @@
                    <cffile action="write" file="#fileRoot#" output="#data#" />
                    <cfset returnStr.Message="file was created" />
            </cfif>
+
            <cfreturn returnStr>
        </cffunction>
 
