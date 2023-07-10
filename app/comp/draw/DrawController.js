@@ -144,9 +144,15 @@ Ext.define("test.comp.draw.DrawController", {
   onWidthChange: function (numberField, newWidth) {
     if (newWidth <= 100) {
       this.setWidth(newWidth);
+      this.lookup("scaleFieldWidth").setValue(newWidth)
+      this.lookup("numberFieldWidth").setValue(newWidth)
     } else {
       Ext.toast("number cant be over 100");
     }
+  },
+
+  onWidthChangeScale: function (scaleField, newWidth) {
+    this.onWidthChange(scaleField, newWidth)
   },
 
   onModeButtonClick: function (button) {

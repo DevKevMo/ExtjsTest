@@ -12,7 +12,7 @@ Ext.define("test.comp.draw.Draw", {
     overflowX: "auto",
     items: [{
         xtype: "tbtext",
-        text: "Mouse Color:",
+        text: "color picker:",
       },
       {
         xtype: "colorpicker",
@@ -24,18 +24,34 @@ Ext.define("test.comp.draw.Draw", {
       "-",
       {
         xtype: "tbtext",
-        text: "Change width:",
+        text: "change width:",
       },
       {
         xtype: "numberfield",
         minValue: 1,
         maxValue: 100,
+        reference: "numberFieldWidth",
         value: 2,
         listeners: {
           change: "onWidthChange",
         },
       },
+      {
+        xtype: 'slider',
+        reference: "scaleFieldWidth",
+        width: '200px',
+        minValue: 1,
+        maxValue: 100,
+        value: 2,
+        listeners: {
+          change: "onWidthChangeScale",
+        },
+      },
       "-",
+      {
+        xtype: "tbtext",
+        text: "change shape:",
+      },
       {
         xtype: "button",
         iconCls: "x-fa fa-arrow-left",
@@ -65,7 +81,9 @@ Ext.define("test.comp.draw.Draw", {
           },
         ],
       },
+      "-",
       "->",
+      "-",
       {
         xtype: "button",
         text: "import",

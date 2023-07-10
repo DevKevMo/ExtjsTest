@@ -9,7 +9,7 @@
         <cfset returnStr.error=true />
         <cfset returnStr.message="" />
         <cfset returnStr.data=[] />
-        <cfif !isDefined("userId")>
+        <cfif isDefined("userId")>
             <cfset root="D:\\wwwroot\azubi_kmoritz\exttraining\test\app\user\" & userId & "\img\" />
             <cfset link="http://dokuwebdev.datasec.de/azubi_kmoritz/exttraining/test/app/user/" & userId & "/img/" &
                 title />
